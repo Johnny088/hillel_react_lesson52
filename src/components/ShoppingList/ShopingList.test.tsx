@@ -65,4 +65,14 @@ describe('ShoppingList component', () => {
 
     expect(shoppingList.length).toBe(0);
   });
+  it('if the input is cleared after adding a new item', async () => {
+    render(<ShoppingList />);
+    const input = screen.getByPlaceholderText('Add item') as HTMLInputElement;
+
+    const addBtn = screen.getByText('Add');
+
+    await userEvent.type(input, 'add new item');
+    await userEvent.click(addBtn);
+    expect(input.value).toBe('');
+  });
 });
